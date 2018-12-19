@@ -1,5 +1,9 @@
 {
   "name": "todo-demo",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
+    "react-router": "^4.3.1"
+  }
 }
