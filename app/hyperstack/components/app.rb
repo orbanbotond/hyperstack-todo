@@ -20,7 +20,7 @@ class App < HyperComponent
       Header()
       Route('/', exact: true) { Redirect('/all') }
       Route('/:scope', mounts: Index)
-      Footer()
+      Footer() unless Todo.count.zero?
     end
   end
 end
