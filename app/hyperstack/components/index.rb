@@ -1,8 +1,9 @@
 class Index < HyperComponent
+  include Hyperstack::Router::Helpers
+
   render(SECTION) do
     UL do
-      Todo.each do |todo|
-      # Todo.all.each do |todo|
+      Todo.send(match.params[:scope]).each do |todo|
         TodoItem(todo: todo)
       end
     end

@@ -17,7 +17,8 @@ class App < HyperComponent
 
   render(SECTION) do
     Header()
-    Index()
+    Route('/', exact: true) { Redirect('/all') }
+    Route('/:scope', mounts: Index)
     Footer()
   end
 end
