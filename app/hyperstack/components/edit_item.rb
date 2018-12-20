@@ -6,7 +6,7 @@ class EditItem < HyperComponent
   after_mount { DOM[dom_node].focus }
 
   render do
-    INPUT(defaultValue: @Todo.title)
+    INPUT(defaultValue: @Todo.title, key: @Todo)
     .on(:enter) do |evt|
       @Todo.update(title: evt.target.value)
       saved! 

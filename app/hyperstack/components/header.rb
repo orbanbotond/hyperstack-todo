@@ -1,5 +1,7 @@
 class Header < HyperComponent
+  before_mount { @new_todo = Todo.new }
   render(HEADER) do
-    'Header will go here'
+    EditItem(todo: @new_todo)
+    .on(:saved) { mutate @new_todo = Todo.new }
   end
 end
