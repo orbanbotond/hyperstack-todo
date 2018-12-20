@@ -15,10 +15,12 @@ class App < HyperComponent
   # Route('/user/:id/name', mounts: UserName) : path segments beginning with a colon will be captured in the match param
   # see the hyper-router gem documentation for more details
 
-  render(SECTION) do
-    Header()
-    Route('/', exact: true) { Redirect('/all') }
-    Route('/:scope', mounts: Index)
-    Footer()
+  render do
+    SECTION(class: 'todo-app') do
+      Header()
+      Route('/', exact: true) { Redirect('/all') }
+      Route('/:scope', mounts: Index)
+      Footer()
+    end
   end
 end

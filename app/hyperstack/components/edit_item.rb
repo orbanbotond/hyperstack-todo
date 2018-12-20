@@ -3,10 +3,12 @@ class EditItem < HyperComponent
 
   triggers :saved
   triggers :cancel
+  others   :etc
+
   after_mount { DOM[dom_node].focus }
 
   render do
-    INPUT(defaultValue: @Todo.title, key: @Todo)
+    INPUT(@Etc, defaultValue: @Todo.title, key: @Todo)
     .on(:enter) do |evt|
       @Todo.update(title: evt.target.value)
       saved! 

@@ -2,12 +2,14 @@ class Footer < HyperComponent
   include Hyperstack::Router::Helpers
 
   def link_item(path)
-    NavLink("/#{path}", style: { marginRight: 10 }) { path.camelize }
+    LI { NavLink("/#{path}", active_class: :selected) { path.camelize } }
   end
 
-  render(DIV) do
-    link_item(:all)
-    link_item(:active)
-    link_item(:completed)
+  render(DIV, class: :footer) do
+    UL(class: :filters) do
+      link_item(:all)
+      link_item(:active)
+      link_item(:completed)
+    end
   end
 end
