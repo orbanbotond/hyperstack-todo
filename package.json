@@ -5,7 +5,8 @@
     "@rails/webpacker": "3.5",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-router": "^4.3.1"
+    "react-router": "^4.3.1",
+    "react-spinners": "^0.4.8"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"

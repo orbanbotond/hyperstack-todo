@@ -17,6 +17,7 @@ class App < HyperComponent
 
   render do
     SECTION(class: 'todo-app') do
+      BarLoader(color: "#8AE0D8")
       Header()
       Route('/', exact: true) { Redirect('/all') }
       Route('/:scope', mounts: Index)
