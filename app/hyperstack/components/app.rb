@@ -22,6 +22,7 @@ class App < HyperComponent
       Route('/', exact: true) { Redirect('/all') }
       Route('/:scope', mounts: Index)
       Footer() unless Todo.count.zero?
+      AnotherList()
     end
   end
 end
