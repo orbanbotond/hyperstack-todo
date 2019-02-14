@@ -8,10 +8,6 @@ class User < ApplicationRecord
   end
 
   def self.current
-    puts Hyperstack::Application.acting_user_id
-    puts Hyperstack::Application.acting_user_id
-    puts Hyperstack::Application.acting_user_id
-    puts Hyperstack::Application.acting_user_id
     Hyperstack::Application.acting_user_id ? find(Hyperstack::Application.acting_user_id) : User.new
   end
 end

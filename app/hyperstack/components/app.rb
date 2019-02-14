@@ -17,10 +17,15 @@ class App < HyperComponent
 
   render do
     SECTION(class: 'todo-app') do
-      BarLoader(color: "#8AE0D8")
+      # BarLoader(color: "#8AE0D8")
       Header()
-      Route('/', exact: true) { Redirect('/all') }
-      Route('/:scope', mounts: Index)
+      Switch do
+        Route(ClientSideRoutes::ORGANIZATIONS, 
+          exact: true, 
+          mounts: Organizations)
+        Route('/', exact: true) { Redirect('/all') }
+        Route('/:scope', mounts: Index)
+      end
       Footer() unless Todo.count.zero?
       AnotherList()
     end
