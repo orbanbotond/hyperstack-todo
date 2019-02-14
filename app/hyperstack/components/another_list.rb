@@ -9,5 +9,8 @@ class AnotherList < HyperComponent
         end
       end
     end
+    DIV do
+      H6 {"Helloworld - #{User.current.email}"}
+    end
   end
 end
