@@ -12,6 +12,6 @@ class Organizations < HyperComponent
   end
 
   render do
-    DependencyGuard(dependencies: dependencies, view: OrganizationsControlled(organizations: organizations).as_node)
+    Hoc::DependencyGuard(dependencies: dependencies, view: OrganizationsControlled(organizations: organizations).as_node)
   end
 end
