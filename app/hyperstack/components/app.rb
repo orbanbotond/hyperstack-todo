@@ -16,8 +16,7 @@ class App < HyperComponent
   # see the hyper-router gem documentation for more details
 
   render do
-    SECTION(class: 'todo-app') do
-      # BarLoader(color: "#8AE0D8")
+    SECTION do
       Header()
       Switch do
         Route(ClientSideRoutes::ORGANIZATIONS, 
@@ -26,8 +25,6 @@ class App < HyperComponent
         Route(ClientSideRoutes::TASKS, exact: true) { Redirect("#{ClientSideRoutes::TASKS}/all") }
         Route("#{ClientSideRoutes::TASKS}/:scope", mounts: Index)
       end
-      Footer() unless Todo.count.zero?
-      AnotherList()
     end
   end
 end

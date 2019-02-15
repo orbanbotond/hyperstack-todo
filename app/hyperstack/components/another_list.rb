@@ -1,7 +1,7 @@
 class AnotherList < HyperComponent
   include Hyperstack::Router::Helpers
 
-  render(DIV, class: :footer) do
+  render(DIV) do
     UL do
       TodoList.all.each do |todo|
         LI do
