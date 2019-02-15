@@ -22,7 +22,7 @@ class App < HyperComponent
       Switch do
         Route(ClientSideRoutes::ORGANIZATIONS, 
           exact: true, 
-          mounts: Organizations)
+          mounts: Organizations::IndexContainer)
         Route('/', exact: true) { Redirect('/all') }
         Route('/:scope', mounts: Index)
       end
