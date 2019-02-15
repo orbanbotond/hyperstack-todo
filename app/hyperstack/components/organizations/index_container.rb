@@ -13,7 +13,7 @@ module Organizations
     end
 
     render do
-      ::Hoc::DependencyGuard(dependencies: dependencies, view: ::Organizations::IndexControlled(orgs: organizations).as_node)
+      ::Hoc::DependencyGuard(dependencies: dependencies, view: ::Organizations::IndexControlled(organizations: organizations).as_node)
     end
   end
 end
