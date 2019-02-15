@@ -7,6 +7,9 @@ class User < ApplicationRecord
            :recoverable, :rememberable, :validatable
   end
 
+  has_many :memberships
+  has_many :organizations, through: :memberships
+
   def self.current
     Hyperstack::Application.acting_user_id ? find(Hyperstack::Application.acting_user_id) : User.new
   end
