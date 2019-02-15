@@ -5,7 +5,7 @@ class Header < HyperComponent
   render(HEADER, class: :header) do
     UL(class: 'nav justify-content-end') do
       LI(class: "nav-item") do
-        NavLink( ClientSideRoutes::ORGANIZATIONS, 
+        NavLink( '/organizations', 
           class: "nav-link active", 
           active_class: :selected) do
             "Organizations"

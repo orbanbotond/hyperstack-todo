@@ -20,7 +20,7 @@ class App < HyperComponent
       # BarLoader(color: "#8AE0D8")
       Header()
       Switch do
-        Route(ClientSideRoutes::ORGANIZATIONS, 
+        Route('/organizations', 
           exact: true, 
           mounts: Organizations)
         Route('/', exact: true) { Redirect('/all') }

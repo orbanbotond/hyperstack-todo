@@ -3,4 +3,6 @@ class Organization < ApplicationRecord
   has_many :users, through: :memberships
 
   has_many :projects
+
+  scope :member_orgs, -> (user_id) {User.find(user_id).organizations}
 end
