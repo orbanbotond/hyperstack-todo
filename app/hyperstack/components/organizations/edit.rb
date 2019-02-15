@@ -1,6 +1,7 @@
 module Organizations
   class Edit < HyperComponent
     param :organization
+    param :current_user
 
     triggers :save
     triggers :cancel
@@ -11,10 +12,17 @@ module Organizations
     render do
       INPUT(@Etc, 
         defaultValue: @Organization.name,
-        key: @Organization)
+        placeholder: 'New Organization Name',
+        key: @Organization.id)
       .on(:enter) do |event|
-        @Organization.update(name: event.target.value)
-        save! 
+        if @Organization.new?
+          @Organization.update(name: event.target.value).then do |result|
+            @Organization.users << @CurrentUser
+          end
+        else
+          @Organization.update(name: event.target.value)
+        end
+        save!
       end
       .on(:blur) do |event|
         cancel!

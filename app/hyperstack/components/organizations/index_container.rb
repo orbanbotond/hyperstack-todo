@@ -13,8 +13,13 @@ module Organizations
       [current_user, organizations]
     end
 
+    def guarded_view
+      ::Organizations::IndexControlled(organizations: organizations,
+                                       current_user: current_user).as_node
+    end
+
     render do
-      ::Hoc::DependencyGuard(dependencies: dependencies, view: ::Organizations::IndexControlled(organizations: organizations).as_node)
+      ::Hoc::DependencyGuard(dependencies: dependencies, view: guarded_view)
     end
   end
 end
