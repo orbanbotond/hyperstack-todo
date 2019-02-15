@@ -6,7 +6,7 @@ module Organizations
       SECTION do
         UL(class: '') do
           @Organizations.each do |org|
-            ::Organizations::Organization(organization: org)
+            ::Organizations::Show(organization: org)
           end
         end
       end

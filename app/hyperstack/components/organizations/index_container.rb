@@ -2,6 +2,7 @@ module Organizations
   class IndexContainer < HyperComponent
     def organizations
       ::Organization.member_orgs(current_user.id)
+      # ::Organization.all
     end
 
     def current_user
