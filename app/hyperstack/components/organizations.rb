@@ -11,19 +11,7 @@ class Organizations < HyperComponent
     [current_user, organizations]
   end
 
-  # render do
-  #   DependencyGuard(dependencies: dependencies, view: OrganizationsControlled(organizations: organizations).as_node)
-  # end
-
-  def are_dependencies_loaded?
-    dependencies.all?{|x|x.loaded?}
-  end
-
   render do
-    if are_dependencies_loaded?
-      OrganizationsControlled(organizations: organizations)
-    else
-      BarLoader(color: "#8AE0D8")
-    end
+    DependencyGuard(dependencies: dependencies, view: OrganizationsControlled(organizations: organizations).as_node)
   end
 end
