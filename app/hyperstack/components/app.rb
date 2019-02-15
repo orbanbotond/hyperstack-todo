@@ -23,7 +23,7 @@ class App < HyperComponent
           exact: true, 
           mounts: Organizations::IndexContainer)
         Route(ClientSideRoutes::TASKS, exact: true) { Redirect("#{ClientSideRoutes::TASKS}/all") }
-        Route("#{ClientSideRoutes::TASKS}/:scope", mounts: Index)
+        Route("#{ClientSideRoutes::TASKS}/:scope", mounts: Tasks::Index)
       end
     end
   end
