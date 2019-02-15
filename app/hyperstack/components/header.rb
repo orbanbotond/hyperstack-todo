@@ -11,6 +11,13 @@ class Header < HyperComponent
             "Organizations"
         end
       end
+      LI(class: "nav-item") do
+        NavLink( ClientSideRoutes::TASKS, 
+          class: "nav-link active", 
+          active_class: :selected) do
+            "Tasks"
+        end
+      end
     end
 
     EditItem(class: 'new-todo', todo: @new_todo)

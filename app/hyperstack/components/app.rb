@@ -23,8 +23,8 @@ class App < HyperComponent
         Route(ClientSideRoutes::ORGANIZATIONS, 
           exact: true, 
           mounts: Organizations::IndexContainer)
-        Route('/', exact: true) { Redirect('/all') }
-        Route('/:scope', mounts: Index)
+        Route(ClientSideRoutes::TASKS, exact: true) { Redirect("#{ClientSideRoutes::TASKS}/all") }
+        Route("#{ClientSideRoutes::TASKS}/:scope", mounts: Index)
       end
       Footer() unless Todo.count.zero?
       AnotherList()
