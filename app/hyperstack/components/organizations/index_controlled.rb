@@ -9,7 +9,7 @@ module Organizations
       SECTION do
         UL(class: '') do
           @Organizations.each do |org|
-            ::Organizations::Show(organization: org)
+            ::Organizations::Show(organization: org, user: @CurrentUser)
           end
         end
         Edit(organization: @new_organization,

@@ -16,20 +16,24 @@ module Organizations
         key: @Organization.id)
       .on(:enter) do |event|
         if @Organization.new?
-          puts "Saving!"
-          @Organization.update(name: event.target.value).then do |result|
-            puts "Saved!"
-            if result[:success]
-              puts result[:models].first
-              puts result[:models].first.id
-              puts @CurrentUser.id
-              puts "Email:#{@CurrentUser.email}"
-              # result[:models].first.users << @CurrentUser
-              Membership.create user_id: @CurrentUser.id, 
-                                organization_id: result[:models].first.id
-              puts "Created the membership!"
-            end
-          end
+          puts "Runing the operation"
+          ::Organizations::CreateOperation.run(user: @CurrentUser,
+                                               name: event.target.value,
+                                               desciption: nil)
+          # puts "Saving!"
+          # @Organization.update(name: event.target.value).then do |result|
+          #   puts "Saved!"
+          #   if result[:success]
+          #     puts result[:models].first
+          #     puts result[:models].first.id
+          #     puts @CurrentUser.id
+          #     puts "Email:#{@CurrentUser.email}"
+          #     # result[:models].first.users << @CurrentUser
+          #     Membership.create user_id: @CurrentUser.id, 
+          #                       organization_id: result[:models].first.id
+          #     puts "Created the membership!"
+          #   end
+          # end
         else
           @Organization.update(name: event.target.value)
         end
