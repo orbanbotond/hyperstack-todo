@@ -2,18 +2,20 @@ module Organizations
   class CreateOperation < Hyperstack::Operation
     param :user
     param :name
-    param :description
+    param :description, nils: true
 
     step do
-      puts "step1"
-      Organization.create name: name, 
-                          description: description
+      @org_promise = Organization.create name: params.name, 
+                                description: params.description
     end
 
-    step do |result| 
-      puts "step2"
-      Membership.create user_id: user.id, 
-                        organization_id: result[:models].first.id
+    step do
+      @org_promise.then do |result|
+        if result[:success]
+          Membership.create user_id: params.user.id,
+                            organization_id: result[:models].first.id
+        end
+      end
     end
   end
 end
