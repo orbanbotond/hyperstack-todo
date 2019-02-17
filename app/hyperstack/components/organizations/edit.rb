@@ -7,7 +7,7 @@ module Organizations
     triggers :cancel
     others   :etc
 
-    after_mount { DOM[dom_node].focus }
+    after_mount { jQ[dom_node].focus }
 
     render do
       INPUT(@Etc, 
@@ -20,13 +20,25 @@ module Organizations
                                                name: event.target.value,
                                                description: nil)
             .then{
+              puts "Success"
             }.fail{ |result|
+              puts "Fails"
+              puts result
             }
+          puts "Next statement"
 
+          # puts "Saving!"
           # @Organization.update(name: event.target.value).then do |result|
+          #   puts "Saved!"
           #   if result[:success]
+          #     puts result[:models].first
+          #     puts result[:models].first.id
+          #     puts @CurrentUser.id
+          #     puts "Email:#{@CurrentUser.email}"
+          #     # result[:models].first.users << @CurrentUser
           #     Membership.create user_id: @CurrentUser.id, 
           #                       organization_id: result[:models].first.id
+          #     puts "Created the membership!"
           #   end
           # end
         else

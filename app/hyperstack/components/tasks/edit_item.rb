@@ -6,7 +6,7 @@ module Tasks
     triggers :cancel
     others   :etc
 
-    after_mount { DOM[dom_node].focus }
+    after_mount { jQ[dom_node].focus }
 
     render do
       INPUT(@Etc, 

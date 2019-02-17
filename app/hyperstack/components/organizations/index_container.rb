@@ -19,7 +19,8 @@ module Organizations
     end
 
     render do
-      ::Hoc::DependencyGuard(dependencies: dependencies, view: guarded_view)
+      guarded_view
+      # ::Hoc::DependencyGuard(dependencies: dependencies, view: guarded_view)
     end
   end
 end
