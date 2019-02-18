@@ -9,44 +9,44 @@ module Organizations
 
     after_mount { jQ[dom_node].focus }
 
-    render do
+    def save_the_org(field, value)
+      @Organization.send "#{field}=", value
+      if @Organization.new?
+        puts "#{field}: #{@value}"
+        result = ::Organizations::CreateOperation.run(user: @CurrentUser,
+                                             name: @Organization.name,
+                                             description: @Organization.description)
+          .then {
+            puts "Success"
+            @Organization = result
+          }.fail{ |result|
+            puts "Fails"
+            puts result
+          }
+      else
+        @Organization.save
+      end
+      save!
+    end
+
+    render(DIV) do
       INPUT(@Etc, 
         defaultValue: @Organization.name,
         placeholder: 'New Organization Name',
         key: @Organization.id)
       .on(:enter) do |event|
-        if @Organization.new?
-          ::Organizations::CreateOperation.run(user: @CurrentUser,
-                                               name: event.target.value,
-                                               description: nil)
-            .then{
-              puts "Success"
-            }.fail{ |result|
-              puts "Fails"
-              puts result
-            }
-          puts "Next statement"
-
-          # puts "Saving!"
-          # @Organization.update(name: event.target.value).then do |result|
-          #   puts "Saved!"
-          #   if result[:success]
-          #     puts result[:models].first
-          #     puts result[:models].first.id
-          #     puts @CurrentUser.id
-          #     puts "Email:#{@CurrentUser.email}"
-          #     # result[:models].first.users << @CurrentUser
-          #     Membership.create user_id: @CurrentUser.id, 
-          #                       organization_id: result[:models].first.id
-          #     puts "Created the membership!"
-          #   end
-          # end
-        else
-          @Organization.update(name: event.target.value)
-        end
-        save!
+        save_the_org(:name, event.target.value)
       end
-      .on(:blur) do |event|
+      .on(:blur) do
+        cancel!
+      end
+      INPUT(@Etc, 
+        defaultValue: @Organization.description,
+        placeholder: 'New Organization Description')
+      .on(:enter) do |event|
+        save_the_org(:description, event.target.value)
+      end
+      .on(:blur) do
         cancel!
       end
     end

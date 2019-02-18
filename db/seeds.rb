@@ -12,6 +12,12 @@ user = User.create email: "boti@gmail.com",
                 password: 'pokolgep',
                 password_confirmation: 'pokolgep'
 
+user_2 = User.create email: "gyongyi@gmail.com", 
+                first_name: "Gyongyi",
+                last_name: "Orban",
+                password: 'pokolgep',
+                password_confirmation: 'pokolgep'
+
 o1 = Organization.create name: 'Logic Optimum',
                         description: 'A One Person RoR shop'
 
@@ -19,4 +25,7 @@ o2 = Organization.create name: '<Epam>',
                         description: 'Central Europes Largest Software Solution Provider'
 
 o1.users << user
+o1.users << user_2
+o2.users << user_2
+
 

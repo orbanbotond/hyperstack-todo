@@ -12,11 +12,20 @@ module Organizations
             ::Organizations::Show(organization: org, user: @CurrentUser)
           end
         end
-        Edit(organization: @new_organization,
-             current_user: @CurrentUser)
-          .on(:save) do
-            mutate @new_organization = Organization.new
+        if @addingNew
+          Edit(organization: @new_organization,
+               current_user: @CurrentUser)
+            .on(:save) do
+              mutate @new_organization = Organization.new
+            end
+        else
+          BUTTON type:"button", class:"btn btn-success" do
+            "Add New Org"
           end
+          .on(:click) do
+              mutate @addingNew = true
+          end
+        end
       end
     end
   end

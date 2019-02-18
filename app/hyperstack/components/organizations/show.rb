@@ -8,9 +8,11 @@ module Organizations
         Edit(organization: @Organization, current_user: @CurrentUser)
           .on(:cancel, :save) { mutate @editing = false }
       else
-        H3{ @Organization.name }
-          .on(:click) { mutate @editing = true }
-        P{ @Organization.description }
+        DIV do
+          H3{ @Organization.name }
+          P{ @Organization.description }
+        end
+        .on(:click) { mutate @editing = true }
       end
     end
   end

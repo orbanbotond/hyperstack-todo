@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def self.current
     Hyperstack::Application.acting_user_id ? find(Hyperstack::Application.acting_user_id) : User.new
   end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end
