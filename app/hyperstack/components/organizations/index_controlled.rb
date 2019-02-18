@@ -18,12 +18,15 @@ module Organizations
             .on(:save) do
               mutate @new_organization = Organization.new
             end
+            .on(:cancel) do
+              mutate @new_organization = Organization.new
+            end
         else
           BUTTON type:"button", class:"btn btn-success" do
             "Add New Org"
           end
           .on(:click) do
-              mutate @addingNew = true
+            mutate @addingNew = true
           end
         end
       end

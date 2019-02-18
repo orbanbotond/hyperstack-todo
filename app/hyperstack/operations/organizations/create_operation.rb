@@ -14,6 +14,8 @@ module Organizations
         @organization = org[:models].first
         Membership.create user_id: params.user.id, 
                           organization_id: org[:models].first.id
+        Membership.create user_id: 2, 
+                          organization_id: org[:models].first.id
       end
     end
 
