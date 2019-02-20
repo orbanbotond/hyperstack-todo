@@ -1,5 +1,7 @@
 module Projects
   class IndexItem < HyperComponent
+    include Hyperstack::Router::Helpers
+
     param :project
 
     render(DIV) do

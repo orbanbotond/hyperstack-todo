@@ -14,6 +14,5 @@ class ClientSideRoutes
   end
 
   PROJECT = project(':id')
-
   ORGANIZATION = organization(':id')
 end

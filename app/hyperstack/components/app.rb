@@ -19,7 +19,11 @@ class App < HyperComponent
     SECTION do
       Header()
       Switch do
-          Route(::ClientSideRoutes::ORGANIZATION, 
+        Route(::ClientSideRoutes::PROJECT, 
+          exact: true, 
+          mounts: ::Projects::Detailed)
+
+        Route(::ClientSideRoutes::ORGANIZATION, 
           exact: true, 
           mounts: ::Organizations::Detailed)
         Route(::ClientSideRoutes::ORGANIZATIONS, 
