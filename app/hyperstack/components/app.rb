@@ -19,9 +19,12 @@ class App < HyperComponent
     SECTION do
       Header()
       Switch do
-        Route(ClientSideRoutes::ORGANIZATIONS, 
+          Route(::ClientSideRoutes::ORGANIZATION, 
           exact: true, 
-          mounts: Organizations::IndexContainer)
+          mounts: ::Organizations::Detailed)
+        Route(::ClientSideRoutes::ORGANIZATIONS, 
+          exact: true, 
+          mounts: ::Organizations::IndexContainer)
         Route(ClientSideRoutes::TASKS, exact: true) { Redirect("#{ClientSideRoutes::TASKS}/all") }
         Route("#{ClientSideRoutes::TASKS}/:scope", mounts: Tasks::Index)
       end

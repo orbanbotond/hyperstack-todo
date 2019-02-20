@@ -21,6 +21,12 @@ user_2 = User.create email: "gyongyi@gmail.com",
 o1 = Organization.create name: 'Logic Optimum',
                         description: 'A One Person RoR shop'
 
+o1.projects.create name: "HyperStack",
+                   description: "Learn Hyperstack out of the box."
+
+o1.projects.create name: "Business Analize",
+                   description: "Learn to be a stellar Business Analyst"
+
 o2 = Organization.create name: '<Epam>',
                         description: 'Central Europes Largest Software Solution Provider'
 
